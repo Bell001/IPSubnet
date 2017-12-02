@@ -11,6 +11,12 @@ h1 {
 }
 
 label {
-    color: brownl;
+    color: brown;
     font-size: 14px;
+}
+
+table {
+    color: paleturquoise;
+    border: 2px;
+    border-color: gray;
 }
