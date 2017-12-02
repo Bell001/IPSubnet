@@ -38,7 +38,8 @@ input[type=text]{
     text-align: center;
     font-size: 18px;
     padding: 20px;
-    width: 200px;
+    width: 100px;
+    height: 40px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
