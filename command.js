@@ -1,20 +1,3 @@
-function make_bi_maskip(mask) {
-	var maskstring = '';
-
-	for (var i = 1; i <= 32; i++) {
-		if (i <= mask) {
-			maskstring += '1';
-		} else {
-			maskstring += '0';
-		}
-		if (i % 8 === 0 && i != 32) {
-			maskstring += '.';
-		}
-	}
-	
-	return maskstring;
-}
-
 function bi_to_deci(string) {
 	var maskstring_li = string.split('.');
 	for (var i = 0; i < maskstring_li.length; i++) {
@@ -33,16 +16,25 @@ function find_network_ip(ip, mask) {
 	return ip_li.join('.');
 }
 
-function find_host_num(mask) {
-	return Math.pow(2, 32-mask);
+function make_bi_maskip(mask) {
+	var maskstring = '';
+
+	for (var i = 1; i <= 32; i++) {
+		if (i <= mask) {
+			maskstring += '1';
+		} else {
+			maskstring += '0';
+		}
+		if (i % 8 === 0 && i != 32) {
+			maskstring += '.';
+		}
+	}
+	
+	return maskstring;
 }
 
-function find_usable_host(host) {
-	var usable = host-2;
-	if (usable < 0) {
-		usable = 0;
-	}
-	return usable;
+function find_host_num(mask) {
+	return Math.pow(2, 32-mask);
 }
 
 function find_wildcard(mask) {
@@ -60,16 +52,12 @@ function find_wildcard(mask) {
 	return bi_to_deci(invert);
 }
 
-function bi_ip(network) {
-	var network_li = network.split('.');
-	for (var i = 0; i < network_li.length; i++) {
-		network_li[i] = parseInt(network_li[i]).toString(2);
-		while (network_li[i].length < 8) {
-			network_li[i] = '0' + network_li[i];
-		}
+function find_usable_host(host) {
+	var usable = host-2;
+	if (usable < 0) {
+		usable = 0;
 	}
-
-	return network_li.join('.');
+	return usable;
 }
 
 function plus_ip(network ,host) {
@@ -99,6 +87,18 @@ function find_usable_range(network_addr, host_num) {
 	}
 }
 
+function bi_ip(network) {
+	var network_li = network.split('.');
+	for (var i = 0; i < network_li.length; i++) {
+		network_li[i] = parseInt(network_li[i]).toString(2);
+		while (network_li[i].length < 8) {
+			network_li[i] = '0' + network_li[i];
+		}
+	}
+
+	return network_li.join('.');
+}
+
 function private_ip(network_addr) {
 	var network_li = network_addr.split('.');
 	if (network_li[0] === '10') {
@@ -110,18 +110,6 @@ function private_ip(network_addr) {
 		return 'Private';
 	} else {
 		return 'Public';
-	}
-}
-
-function ip_class(subnet) {
-	if (subnet < 8) {
-		return '-';
-	} else if (subnet < 16) {
-		return 'A';
-	} else if (subnet < 24) {
-		return 'B'
-	} else {
-		return 'C';
 	}
 }
 
@@ -142,6 +130,17 @@ function find_start_ip(network_addr, ipclass , char) {
 	}
 }
 
+function ip_class(subnet) {
+	if (subnet < 8) {
+		return '-';
+	} else if (subnet < 16) {
+		return 'A';
+	} else if (subnet < 24) {
+		return 'B'
+	} else {
+		return 'C';
+	}
+}
 
 for (var i = 1; i <= 32; i++) {
 	$('select#subnet').append("<option value="+i+">"+ bi_to_deci(make_bi_maskip(i)) +'/'+i+"</option>");
@@ -180,15 +179,15 @@ $('form').submit(function(e) {
 	$('h4#res2').empty();
 
 	if (subnet%8 !== 0) {
-		var star_ip = find_start_ip(network_addr, ipclass, '*');
-		var start_ip = find_start_ip(network_addr, ipclass, '0');
+        var start_ip = find_start_ip(network_addr, ipclass, '0');
+		var star_ip = find_start_ip(network_addr, ipclass, '*');	
 		var end_broadcast_ip = find_start_ip(network_addr, ipclass, '255');
 		$('h4#res2').append("All Possible /" + subnet + " Networks" + star_ip);
 		$('thead#res2').append("<tr><td>Network Address</td><td>Usable Host Range</td><td>Broadcast Address</td></tr>");
 		while (true) {
 			var broadcast_ip = plus_ip(start_ip, host_num-1);
-			var sta_use_range = plus_ip(start_ip, 1);
-			var end_use_range = plus_ip(start_ip, host_num-2);
+            var end_use_range = plus_ip(start_ip, host_num-2);
+            var sta_use_range = plus_ip(start_ip, 1);
 			$('tbody#res2').append("<tr><td>" + start_ip + "</td><td>" + sta_use_range + "-" + end_use_range + "</td><td>" + broadcast_ip + "</td></tr>");
 			if (broadcast_ip === end_broadcast_ip) {
 				break;
