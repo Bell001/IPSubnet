@@ -1,9 +1,9 @@
 .container {
-    weight: 200px;
+    width: 200px;
     height: 400px;
     color:aquamarine;
     border: 2px;
-    border-color: salmon;
+    border-color: salmon !importance;
 }
 
 h1 {
