@@ -16,14 +16,14 @@
           item.style.visibility = 'visible';
         }
         
-      function myFunction(item){
-        if (item == 'hidden') {
+      function myFunction(){
+        var item = document.getElementById('input_main');
+        if (itemstyle.visibility == 'hidden') {
           
             show();
         } else {
             // $( "#FFF" ).prop( "disabled", true );
             // $( "#FFF" ).css( "background", "#808080" );
-       
             hide(); 
         }
       }
