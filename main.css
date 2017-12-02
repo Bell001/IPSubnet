@@ -2,22 +2,25 @@
     width: 200px;
     height: 400px;
     color:aquamarine;
-    border: 2px;
+    border: 4px;
     border-color: salmon !importance;
 }
 
 h1 {
     color: black;
-    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
 }
 
 label {
     color: brown;
-    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
 }
 
 table {
-    color: paleturquoise;
-    border: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(84, 87, 116);
+    border: 4px;
     border-color: gray;
 }
