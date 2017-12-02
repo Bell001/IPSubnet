@@ -18,8 +18,7 @@
         
       function myFunction(){
         var item = document.getElementById('input_main');
-        if (item.style.visibility === hidden) {
-          
+        if (isElementHidden(item)) {
             show();
         } else {
             // $( "#FFF" ).prop( "disabled", true );
