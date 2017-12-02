@@ -29,6 +29,8 @@ input[type=text]{
     border-radius:10px;
 }
 
+tr:nth-child(even) {background-color: #ecfbfd;}
+
 .btn_submit {
     display: inline-block;
     border-radius: 4px;
