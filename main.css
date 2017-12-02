@@ -1,4 +1,16 @@
 .container {
     weight: 200px;
     height: 400px;
+    color: burlywood;
+    border-color: salmon;
+}
+
+h1 {
+    color: black;
+    font-size: 16px;
+}
+
+label {
+    color: brownl;
+    font-size: 14px;
 }
