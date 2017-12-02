@@ -21,6 +21,8 @@
         if (item.style.visibility == 'hidden') {
             show();
         } else {
+          $( "#input_main" ).css( "width", "0px" );
+          $( "#input_main" ).css( "height", "0px" );
             hide();
             // $( ".container" ).remove(); 
         }
