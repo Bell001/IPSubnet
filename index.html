@@ -6,9 +6,41 @@
    </head>
   
    <body>
-
-      <h1>My First Heading</h1>
-      <p>My first paragraph.</p>
-
-   </body>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="form-group">
+                <label for="Inputip">Input IP</label>
+                <input type="text" class="form-control" id="Inputip" placeholder="Enter IP">
+              </div>
+              <div class="form-group">
+                <label for="Inputsubnet">Input Subnet</label>
+                <select class="form-control" id="subnet"></select>
+                <button id="submit" class='btn btn-success'>Calculate</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    
+    <table class="table">
+      <h2 id='res'></h2>
+      <tbody id='res1'></tbody>
+    </table>
+    <table class="table">
+      <h4 id='res2'></h4>
+      <thead id='res2'></thead>
+      <tbody id='res2'></tbody>
+    </table>
+    
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+    
+    </body>
 </html>
