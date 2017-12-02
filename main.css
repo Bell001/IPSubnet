@@ -69,3 +69,25 @@ input[type=text]{
     opacity: 1;
     right: 0;
   }
+
+  #subnet {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa;
+  }
+
+  #subnet select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+#subnet select:focus {
+    outline: none;
+}
