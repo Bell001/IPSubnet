@@ -165,30 +165,30 @@ $('form').submit(function(e) {
 	var bin_id = bi_ip(ip).split('.').join('');
 	var int_id = parseInt(bin_id, 2);
 	var hex_id = int_id.toString(16);
-	$('h2#res').empty();
-	$('h2#res').append("Result");
+	$('h2#temp1').empty();
+	$('h2#temp1').append("Result");
 	var head_li = ['IP Address', 'Network Address', 'Usable Host IP Range', 'Broadcast Address', 'Total Number of Hosts', 'Number of Usable Hosts', 'Subnet Mask', 'Wildcard Mask', 'Binary Subnet Mask', 'IP Class', 'CIDR Notation', 'IP Type', 'Short', 'Binary ID', 'Integer ID', 'Hex ID'];
 	var res_li = [ip, network_addr, usable_range, broadcast, host_num, usable_host, subnet_mask, wildcard, bin_subnet, ipclass, cidr, ip_type, short, bin_id, int_id, hex_id];
-	$('tbody#res1').empty();
+	$('tbody#temp2').empty();
 	for (var i = 0; i < res_li.length; i++) {
-		$('tbody#res1').append("<tr><td>" + head_li[i] + ":</td><td>"+ res_li[i] +"</td></tr>");
+		$('tbody#temp2').append("<tr><td>" + head_li[i] + ":</td><td>"+ res_li[i] +"</td></tr>");
 	}
 
-	$('thead#res2').empty();
-	$('tbody#res2').empty();
-	$('h4#res2').empty();
+	$('thead#temp').empty();
+	$('tbody#temp').empty();
+	$('h4#temp').empty();
 
 	if (subnet%8 !== 0) {
         var start_ip = find_start_ip(network_addr, ipclass, '0');
 		var star_ip = find_start_ip(network_addr, ipclass, '*');	
 		var end_broadcast_ip = find_start_ip(network_addr, ipclass, '255');
-		$('h4#res2').append("All Possible /" + subnet + " Networks" + star_ip);
-		$('thead#res2').append("<tr><td>Network Address</td><td>Usable Host Range</td><td>Broadcast Address</td></tr>");
+		$('h4#temp').append("All Possible /" + subnet + " Networks" + star_ip);
+		$('thead#temp').append("<tr><td>Network Address</td><td>Usable Host Range</td><td>Broadcast Address</td></tr>");
 		while (true) {
 			var broadcast_ip = plus_ip(start_ip, host_num-1);
             var end_use_range = plus_ip(start_ip, host_num-2);
             var sta_use_range = plus_ip(start_ip, 1);
-			$('tbody#res2').append("<tr><td>" + start_ip + "</td><td>" + sta_use_range + "-" + end_use_range + "</td><td>" + broadcast_ip + "</td></tr>");
+			$('tbody#temp').append("<tr><td>" + start_ip + "</td><td>" + sta_use_range + "-" + end_use_range + "</td><td>" + broadcast_ip + "</td></tr>");
 			if (broadcast_ip === end_broadcast_ip) {
 				break;
 			}
